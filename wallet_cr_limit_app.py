@@ -172,7 +172,7 @@ avg_sum_credits_per_month = st.number_input("Customer's Average Sum of Credit Va
 median_avg_credits_per_month = st.number_input("Customer's Median of Average Credits (Amounts) per Month", min_value=0.0, step=0.1)
 businesstype = st.selectbox('Business Type', ['INDIVIDUAL', 'SOLE_PROPRIETOR', 'UNREGISTERED', 'LIMITED_COMPANY', 'PARTNERSHIP'])
 crb_cr_quality = st.selectbox('CRB Credit Quality', ['Defaulter', 'Lowest', 'Low', 'Moderate', 'High', 'Highest'])
-crb_listing = st.selectbox('CRB Listing Status', ['Pos', 'Neg'])
+crb_listing = st.selectbox('CRB Listing Status', ['Positive', 'Negative'])
 length_on_platform = st.number_input("Customer's Length on Wallet Platform (in months)", min_value=0, step=1)
 
 # Calculate Credit Limit
