@@ -2,6 +2,13 @@
 
 import streamlit as st
 from datetime import datetime
+import pytz
+
+# Set the timezone to UTC+03
+tz = pytz.timezone('Etc/GMT-3')
+
+# Get the current time in the specified timezone
+current_time = datetime.now(tz)
 
 # User-defined function to calculate the credit limit for a wallet platform customer based on defined business rules
 
@@ -155,7 +162,9 @@ def set_credit_limit(avg_ntxns_per_month, avg_sum_credits_per_month, median_avg_
 
 # Streamlit App Interface
 st.header(f"Wallet Credit Limit Generator")
-st.subheader(f"{datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
+# st.subheader(f"{datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
+# Display the current time with timezone in Streamlit
+st.subheader(f"{current_time.strftime('%Y-%m-%d %H:%M:%S UTC+03')}")
 
 # Input Fields
 avg_ntxns_per_month = st.number_input("Customer's Average Number of Transactions per Month", min_value=0.0, step=0.1)
