@@ -12,7 +12,7 @@ current_time = datetime.now(tz)
 
 # User-defined function to calculate the credit limit for a wallet platform customer based on defined business rules
 
-def set_credit_limit(avg_ntxns_per_month, avg_sum_credits_per_month, median_avg_credits_per_month, businesstype='INDIVIDUAL', crb_cr_quality='Low', crb_listing='Neg', length_on_platform=0):
+def set_credit_limit(avg_ntxns_per_month, avg_sum_credits_per_month, median_avg_credits_per_month, businesstype='INDIVIDUAL', crb_cr_quality='Low', crb_listing='Negative', length_on_platform=0):
     """
     Calculate the credit limit for a wallet platform customer (rounded to the nearest tenth and integer) based on defined business rules.
 
@@ -35,7 +35,7 @@ def set_credit_limit(avg_ntxns_per_month, avg_sum_credits_per_month, median_avg_
     median_avg_credits_per_month (float): Median of the average credits per month.
     businesstype (str): Type of business (INDIVIDUAL, SOLE_PROPRIETOR, UNREGISTERED, LIMITED_COMPANY, PARTNERSHIP). Defaults to 'INDIVIDUAL'.
     crb_cr_quality (str): CRB customer credit quality categorization (Defaulter|Lowest|Low|Moderate|High|Highest). Defaults to 'Low'.
-    crb_listing (str): CRB listing status of the customer ('Pos' or 'Neg'). Defaults to 'Neg'.
+    crb_listing (str): CRB listing status of the customer ('Positive' or 'Negative'). Defaults to 'Negative'.
     length_on_platform (int): Duration of the customer on the wallet platform (in months).
 
     Returns:
@@ -66,8 +66,8 @@ def set_credit_limit(avg_ntxns_per_month, avg_sum_credits_per_month, median_avg_
     if not crb_cr_quality.lower() in ['defaulter', 'lowest', 'low', 'moderate', 'high', 'highest']:
         raise ValueError("CRB credit quality value must be either 'Defaulter', 'Lowest', 'Low', 'Moderate', 'High' or 'Highest'.")
     
-    if not crb_listing.lower() in ['neg', 'pos']:
-        raise ValueError("CRB listing can only take the values 'Neg' or 'Pos'.")
+    if not crb_listing.lower() in ['negative', 'positive']:
+        raise ValueError("CRB listing can only take the values 'Negative' or 'Positive'.")
     
     # Check 'businesstype' value
     if not isinstance(businesstype, str):
@@ -84,7 +84,7 @@ def set_credit_limit(avg_ntxns_per_month, avg_sum_credits_per_month, median_avg_
         category = 'BUS'
 
     # Check CRB Listing Status
-    if crb_listing.lower() == 'neg':
+    if crb_listing.lower() == 'negative':
         return 'Decline', 0, "Customer has a negative CRB listing status."
     
     # Check if average number of transactions per month is one or less
